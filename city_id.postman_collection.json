@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "ef0c4f6d-b8e2-4998-ae03-75971bb18d77",
+		"name": "city_id",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2e8d619-33c9-44d0-9ea9-75e83d0a42ac",
+						"exec": [
+							"pm.test(\"Status is ok, response is json\", function () {\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.json;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"cityId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q={{cityName}}&id=2019951&APPID=4e095f0c5eebbb6cea4d7ba49d12b843",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{cityName}}"
+						},
+						{
+							"key": "id",
+							"value": "2019951"
+						},
+						{
+							"key": "APPID",
+							"value": "4e095f0c5eebbb6cea4d7ba49d12b843"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?id={{cityId}}&lang=ru&units=metrics&APPID=4e095f0c5eebbb6cea4d7ba49d12b843",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{cityId}}"
+						},
+						{
+							"key": "lang",
+							"value": "ru"
+						},
+						{
+							"key": "units",
+							"value": "metrics"
+						},
+						{
+							"key": "APPID",
+							"value": "4e095f0c5eebbb6cea4d7ba49d12b843"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
